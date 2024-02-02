@@ -9,6 +9,7 @@ The names of the Employees are in the form of links which when clicked will take
 The status gets updated in the employee details page as well.
 SQLite Database is used for this application.
 
-Only one table having fields id, name, designation, department, date_of_joing, attendance_date, is_present columns are created which serves all the purpose.
+Database Schema looks something like this
+BasicHRMS_employee(id, name, designation, department, date_of_joing, attendance_date, is_present)
 
 THANKYOU AND LOOKING FORWARD TO WORKING WITH KREDILY AND DEVELOPING BETTER APPLICATIONS AND GAINING MAXIMUM KNOWLEDGE.
