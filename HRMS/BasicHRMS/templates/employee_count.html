@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Count Report</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            max-width: 50vw;
+            max-height: 50vh;
+            margin: auto;
+        }
+
+        canvas {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+        }
+    </style>
+    
+</head>
+<body>
+    <h1>Employee Count Report</h1>
+    <table>
+        <tr>
+            <th>Department</th>
+            <th>Employee Count</th>
+        </tr>
+        {% for department, count in employee_counts %}
+            <tr>
+                <td>{{ department }}</td>
+                <td>{{ count }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <!-- To present charts also -->
+    <canvas id="employeeChart" width="400" height="200"></canvas>
+
+    <script>
+        // JavaScript code for rendering the chart
+        var ctx = document.getElementById('employeeChart').getContext('2d');
+        var data = {
+            labels: [{% for department, _ in employee_counts %}"{{ department }}",{% endfor %}],
+            datasets: [{
+                label: 'Employee Count',
+                data: [{% for _, count in employee_counts %}{{ count }},{% endfor %}],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        var options = {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+
+        var employeeChart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
+        });
+    </script>
+</body>
+</html>

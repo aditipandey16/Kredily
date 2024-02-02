@@ -1,0 +1,26 @@
+<!-- BasicHRMS/templates/employee_details.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ employee.name }} Details</title>
+</head>
+<body>
+    <h1>{{ employee.name }} Details</h1>
+    
+    <p>Designation: {{ employee.designation }}</p>
+    <p>Department: {{ employee.department }}</p>
+    <p>Date of Joining: {{ employee.date_of_joining }}</p>
+
+    <!-- New code to display attendance details -->
+    {% if employee.attendance_date %}
+        <p>Attendance Date: {{ employee.attendance_date }}</p>
+        <p>Is Present: {% if employee.is_present %}Yes{% else %}No{% endif %}</p>
+    {% else %}
+        <p>Attendance details not available</p>
+    {% endif %}
+    <a href="{% url 'mark_attendance' employee_id=employee.id %}"> Mark Attendance</a>
+</body>
+</html>

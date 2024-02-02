@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Attendance</title>
+</head>
+<body>
+    <h2>Mark Attendance</h2>
+    
+    <form method="post" action="{% url 'mark_attendance' employee.id %}">
+        {% csrf_token %}
+        
+        <label for="attendance_date">Date:</label>
+        <input type="date" id="attendance_date" name="attendance_date" required>
+        
+        <label for="is_present">Attendance Status:</label>
+        <select id="is_present" name="is_present" required>
+            <option value="True">Present</option>
+            <option value="False">Absent</option>
+        </select>
+        
+        <input type="submit" value="Submit">
+    </form>
+    
+    <a href="{% url 'employee_details' employee.id %}">Back to Employee Details</a>
+</body>
+</html>

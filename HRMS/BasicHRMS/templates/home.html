@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome to Human Resource Mangement System</h1>
+
+    <a href="http://127.0.0.1:8000/add_employee/">Add Employee</a><br>
+    <a href="http://127.0.0.1:8000/employee_count/">Employee Count</a>
+
+    <h2>Employees List</h2>
+    <ul>
+        {% for employee in employees %}
+            <li>
+                <a href="{% url 'employee_details' employee_id=employee.id %}">{{ employee.name }}</a>
+                (Employee ID: {{ employee.id }})
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
