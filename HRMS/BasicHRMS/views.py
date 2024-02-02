@@ -28,19 +28,13 @@ def add_employee(request):
     else:
         # Handle the GET request to show the form
         return render(request, 'add_employee.html')  # Create a template for the form
-    
-
-def get_all_employees(request):
-    employees = Employee.objects.all()
-    data = [{'name': emp.name, 'designation': emp.designation, 'department': emp.department, 'date_of_joining': emp.date_of_joining} for emp in employees]
-    return JsonResponse({'employees': data})
 
 def mark_attendance(request, employee_id):
     employee = get_object_or_404(Employee, pk=employee_id)
 
     if request.method == 'POST':
-        attendance_date = request.POST.get('attendance_date')  # Update to match your form field name
-        is_present = request.POST.get('is_present')  # Update to match your form field name
+        attendance_date = request.POST.get('attendance_date')  
+        is_present = request.POST.get('is_present')  
 
         # Update existing employee's attendance
         employee.attendance_date = attendance_date
@@ -69,12 +63,12 @@ def employee_details(request, employee_id):
     # Retrieve the employee object or return a 404 response if not found
     employee = get_object_or_404(Employee, pk=employee_id)
 
-    # You can customize the context based on your needs
+    #customizing the context based on needs
     context = {
         'employee': employee,
     }
 
-    # Render the employee details template with the provided context
+    # Rendering the employee details template with the provided context
     return render(request, 'employee_details.html', context)
 
 def employee_count(request):
